@@ -1,6 +1,20 @@
+buildscript {
+    repositories {
+        maven { url 'https://plugins.gradle.org/m2/' }
+    }
+    dependencies {
+        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:[0.12.9, 0.99.99]'
+    }
+}
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
+
+repositories {
+    maven { url 'https://maven.google.com' }
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
-
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -11,6 +25,8 @@ android {
         targetSdkVersion 30
         versionCode 3
         versionName "1.2"
+        manifestPlaceholders = [onesignal_app_id: "956f63f4-4ce7-4dbe-a2e2-63776e7803b8",
+                                onesignal_google_project_number: "REMOTE"]
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -34,5 +50,9 @@ dependencies {
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.21'
     implementation 'com.google.firebase:firebase-config:20.0.2'
     implementation 'com.google.firebase:firebase-core:18.0.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.onesignal:OneSignal:3.15.4'
+    implementation 'com.facebook.android:facebook-applinks:5.15.3'
+    implementation 'com.facebook.android:facebook-android-sdk:5.15.3'
 
 }
